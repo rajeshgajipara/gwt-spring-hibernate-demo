@@ -1,0 +1,42 @@
+
+.hideme {
+  display: none;
+}
+
+.showme {
+  display: inline;
+}
+
+.tableRow {
+}
+
+.tableRow td {
+  padding: 5px;
+}
+
+.tableRow-even {
+  background: #EEEEEE;
+  border: 1px solid #EEEEEE;
+}
+
+.tableRow-odd {
+  background: #FFFFFF;
+  border: 1px solid #FFFFFF;
+}
+
+.tableRow-header {
+  color: #FFFFFF;
+  line-height: 20px;
+  background: #555555;
+  border: 1px solid #000000;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div#main {
+  width: 600px;
+}
+
