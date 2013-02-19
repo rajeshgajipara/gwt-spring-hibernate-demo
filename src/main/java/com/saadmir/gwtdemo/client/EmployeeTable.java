@@ -60,6 +60,7 @@ public class EmployeeTable {
     button.setStyleName("btn");
     button.addStyleName("btn-block");
     button.addStyleName("btn-primary");
+    button.addStyleName("topmargin5");
     return button;
   }
 
@@ -120,10 +121,10 @@ public class EmployeeTable {
 
   private void setupTable(){
     this.table.setWidth("100%");
-    this.table.addStyleName("table");
+    this.table.addStyleName("topmargin5");
     this.table.addStyleName("table-center");
     this.table.addStyleName("center");
-    this.table.setBorderWidth(2);
+    //this.table.setBorderWidth(2);
 
     this.table.setWidget(0, 0, new Label("Email"));
     this.table.getCellFormatter().setWidth(0, 0, "200px");

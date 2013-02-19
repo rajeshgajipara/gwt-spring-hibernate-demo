@@ -14,10 +14,7 @@ import com.saadmir.gwtdemo.client.EmployeeDTO;
 @Table(
       name = "employee",
       catalog = "gwtdemo",
-      uniqueConstraints = { @UniqueConstraint(
-        columnNames = "id",
-        columnNames = "email"
-      ) }
+      uniqueConstraints = { @UniqueConstraint(columnNames = {"id","email"}) }
 )
 public class Employee implements java.io.Serializable {
 

@@ -1,10 +1,10 @@
 
-.hideme {
-  display: none;
+.topmargin10{
+  margin-top: 10px;
 }
 
-.showme {
-  display: inline;
+.topmargin5{
+  margin-top: 10px;
 }
 
 .tableRow {
