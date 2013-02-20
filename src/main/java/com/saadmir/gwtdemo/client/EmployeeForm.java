@@ -1,6 +1,8 @@
 package com.saadmir.gwtdemo.client;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -20,8 +22,8 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 public class EmployeeForm {
 
   final MainPanel appview;
-  final Map inputs = new HashMap();
-  final Map errors = new HashMap();
+  final Map<String,TextBox> inputs = new HashMap<String,TextBox>();
+  final Map<String,HTML> errors = new HashMap<String,HTML>();
   final VerticalPanel panel = new VerticalPanel();
   final private Button closeButton = new Button("&times;");
   final private Button submitButton = new Button("Submit");
@@ -96,11 +98,16 @@ public class EmployeeForm {
               }
 
               public void onSuccess(EmployeeDTO e) {
-                resetInputs();
-                EmployeeDTO[] arr = new EmployeeDTO[1];
-                arr[0] = e;
-                appview.updateEmployeeTable(arr);
-                appview.showEmployeeTable();
+            	if (e != null) {
+            		resetInputs();
+            		final List<EmployeeDTO> l = new ArrayList<EmployeeDTO>(1);
+            		l.add(e);
+            		appview.updateEmployeeTable(l);
+            		appview.showEmployeeTable();
+            	} else {
+                    errorBox.setText("An error occured.  Please try again.");
+                    errorBox.setVisible(true);            		
+            	}
               }
             };
 

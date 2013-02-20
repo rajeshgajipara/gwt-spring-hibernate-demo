@@ -17,7 +17,19 @@ public class EmployeeDaoImpl implements EmployeeDao {
   }
 
   public Employee create(Employee e){
-    List list = template.find("from Employee where email=?",e.getEmail());
+	if (e == null
+		|| e.getEmail() == null 
+		|| e.getEmail().length() < 1
+		|| e.getFirstName() == null 
+		|| e.getFirstName().length() < 1
+		|| e.getLastName() == null 
+		|| e.getLastName().length() < 1
+		|| e.getCity() == null  
+		|| e.getCity().length() < 1) {
+		return (Employee)null;
+	}
+	
+	List<Employee> list = template.find("from Employee where email=?",e.getEmail());
     if (list.isEmpty()) {
       template.save(e);
       return e;
@@ -26,19 +38,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
     return (Employee)list.get(0);
   }
 
-  public Employee[] find(String email){
-    List list;
+  public List<Employee> find(String email){
     if (email != null && email.length() > 0){
-      list = template.find("from employee where email=?",email);
-    } else {
-      list = template.loadAll(Employee.class);
+      return template.find("from employee where email=?",email);
     }
-
-    Employee[] array = new Employee[list.size()];
-    for (int i=0 ; i<list.size() ; i++){
-      array[i] = (Employee)list.get(i);
-    }
-    return array;
+    
+    return template.loadAll(Employee.class);
   }
 
   public void update(Employee e){
@@ -46,8 +51,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
   }
 
   public void delete(String email){
-    List list = template.find("from Employee where email=?",email);
-    Employee e = (Employee)list.get(0);
-    template.delete(e);
+    List<Employee> list = template.find("from Employee where email=?",email);
+    template.delete((Employee)list.get(0));
   }
 }

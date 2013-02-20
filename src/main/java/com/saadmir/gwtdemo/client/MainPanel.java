@@ -1,5 +1,7 @@
 package com.saadmir.gwtdemo.client;
 
+import java.util.List;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -22,7 +24,7 @@ public class MainPanel {
     this.showEmployeeTable();
   }
 
-  public void updateEmployeeTable(EmployeeDTO[] employees){
+  public void updateEmployeeTable(List<EmployeeDTO> employees){
     this.employeeTable.updateTable(employees);
   }
 

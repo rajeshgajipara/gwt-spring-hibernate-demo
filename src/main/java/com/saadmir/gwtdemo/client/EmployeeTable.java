@@ -1,6 +1,7 @@
 package com.saadmir.gwtdemo.client;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -17,7 +18,7 @@ public class EmployeeTable {
   final MainPanel appview;
   final private VerticalPanel panel = new VerticalPanel();
   final private Grid table = new Grid(1,5);
-  final private Set employees = new HashSet();
+  final private Set<String> employees = new HashSet<String>();
 
   public EmployeeTable(MainPanel appv){
     this.appview = appv;
@@ -31,13 +32,13 @@ public class EmployeeTable {
     this.panel.addStyleName("center");
 
 
-    AsyncCallback<EmployeeDTO[]> callback = new AsyncCallback<EmployeeDTO[]>() {
+    AsyncCallback<List<EmployeeDTO>> callback = new AsyncCallback<List<EmployeeDTO>>() {
       public void onFailure(Throwable caught) {
         // TODO: Do something with errors.
         //logger.log(Level.SEVERE, "200 ERROR");
       }
 
-      public void onSuccess(EmployeeDTO[] result) {
+      public void onSuccess(List<EmployeeDTO> result) {
         updateTable(result);
       }
     };
@@ -64,11 +65,11 @@ public class EmployeeTable {
     return button;
   }
 
-  public void updateTable(EmployeeDTO[] es) {
-    for (int i = 0; i < es.length; i++) {
-      if (this.employees.contains(es[i].getEmail()) == false){
-        this.employees.add(es[i].getEmail());
-        this.addRow(es[i]);
+  public void updateTable(List<EmployeeDTO> es) {
+    for (EmployeeDTO e : es) {
+      if (this.employees.contains(e.getEmail()) == false){
+        this.employees.add(e.getEmail());
+        this.addRow(e);
       }
     }
     this.styleRows();
